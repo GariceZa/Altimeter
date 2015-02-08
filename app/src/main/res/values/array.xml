@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="items">
+        <item>Feet</item>
+        <item>Meters</item>
+    </string-array>
+
+    <string-array
+        name="items_values">
+        <item>3.28084</item>
+        <item>1</item>
+    </string-array>
+</resources>

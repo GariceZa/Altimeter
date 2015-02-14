@@ -8,8 +8,8 @@ android {
         applicationId "handyapps.price.gareth.altimeter"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 3
-        versionName "2.1"
+        versionCode 4
+        versionName "2.2"
     }
 
     compileOptions {

@@ -129,7 +129,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         super.onRestoreInstanceState(savedInstanceState);
 
         // Restore from saved instance
-        height.setText(savedInstanceState.getString("STATE_SPEED"));
+        height.setText(savedInstanceState.getString("STATE_HEIGHT"));
         heightUnit.setText(savedInstanceState.getString("STATE_UNIT"));
     }
 

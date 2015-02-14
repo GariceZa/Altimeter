@@ -7,10 +7,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -109,6 +109,28 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     @Override
     public void onProviderDisabled(String provider) {
         Log.i("--onProviderDisabled","Provider Disabled " + provider);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        // Save the current speed & speed unit
+        outState.putString("STATE_HEIGHT",height.getText().toString());
+        outState.putString("STATE_UNIT",heightUnit.getText().toString());
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore from saved instance
+        height.setText(savedInstanceState.getString("STATE_SPEED"));
+        heightUnit.setText(savedInstanceState.getString("STATE_UNIT"));
     }
 
     // Starts new ad requests from admob

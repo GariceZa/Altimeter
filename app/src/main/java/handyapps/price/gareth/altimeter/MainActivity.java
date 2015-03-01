@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -28,6 +29,9 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     private LocationManager locMan;
     private String provider;
     private AdView mAdView;
+    private int accuracy;
+    private ImageView gpsAccuracy;
+    private int altitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +78,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_activity_menu, menu);
         return true;
     }
@@ -114,9 +118,10 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        // Save the current speed & speed unit
+        // Save the current altitude, altitude unit & location accuracy
         outState.putString("STATE_HEIGHT",height.getText().toString());
         outState.putString("STATE_UNIT",heightUnit.getText().toString());
+        outState.putInt("accuracy",accuracy);
 
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(outState);
@@ -131,6 +136,8 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         // Restore from saved instance
         height.setText(savedInstanceState.getString("STATE_HEIGHT"));
         heightUnit.setText(savedInstanceState.getString("STATE_UNIT"));
+        accuracy = savedInstanceState.getInt("accuracy");
+        setGpsAccuracy();
     }
 
     // Starts new ad requests from admob
@@ -234,6 +241,21 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         }
     }
 
+    // Sets the satellite icon depending on the location accuracy
+    private void setGpsAccuracy(){
+
+        gpsAccuracy = (ImageView)findViewById(R.id.ivGPSAccuracy);
+        if(accuracy < 10){
+            gpsAccuracy.setBackgroundResource(R.drawable.gps_high);
+        }
+        else if( accuracy < 20){
+            gpsAccuracy.setBackgroundResource(R.drawable.gps_med);
+        }
+        else{
+            gpsAccuracy.setBackgroundResource(R.drawable.gps_low);
+        }
+    }
+
     // Update height on background thread
     private class RetrieveHeight extends AsyncTask<Location,Void,Integer>{
 
@@ -243,8 +265,11 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
             // Instantiates a new instance of the LocationInfo class
             LocationInfo locationInfo = new LocationInfo(params[0],getApplicationContext());
 
-            // Returns the current speed
-            return locationInfo.getAltitude();
+            altitude = locationInfo.getHeight();
+            accuracy = locationInfo.getAccuracy();
+
+            // Returns the current altitude
+            return altitude;
         }
 
         @Override
@@ -256,6 +281,9 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
             // Sets the speed unit text view
             setUnit();
+
+            // sets accuracy icon
+            setGpsAccuracy();
         }
     }
 }

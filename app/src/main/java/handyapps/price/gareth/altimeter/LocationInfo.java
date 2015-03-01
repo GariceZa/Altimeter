@@ -19,9 +19,15 @@ public class LocationInfo {
     }
 
     // Returns a speed value based on the height unit preference
-    protected int getAltitude(){
+    protected int getHeight(){
 
         Preferences prefs = new Preferences(context);
         return (int)(location.getAltitude() * prefs.getHeightUnit());
+    }
+
+    // Returns the accuracy of the location data
+    protected int getAccuracy(){
+
+        return (int)location.getAccuracy();
     }
 }

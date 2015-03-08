@@ -11,12 +11,13 @@
     <string name="feet">Feet</string>
     <string name="height_default">---</string>
     <string name="settings">settings</string>
+    <string name="preferences">Preferences</string>
     <string name="preference_settings_title">User Preferences</string>
     <string name="list_preference_title">Altitude Unit</string>
     <string name="list_preference_dialog_title">Altitude Unit</string>
-    <string name="list_preference_summary">Set your required altitude unit</string>
+    <string name="list_preference_summary">Feet / Meters - Changes take effect when your device receives a location update</string>
     <string name="preference_key">unit</string>
-    <string name="default_preference">1</string>
+    <string name="default_preference">3.28084</string>
 
 </resources>
 

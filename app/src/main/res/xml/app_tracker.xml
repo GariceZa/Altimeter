@@ -6,6 +6,9 @@
     <!-- Enable automatic Activity measurement -->
     <bool name="ga_autoActivityTracking">true</bool>
 
-    <screenName name="handyapps.price.gareth.altimeter.MainActivity">Altimeter Main Page</screenName>
+    <screenName name="handyapps.price.gareth.altimeter.MainActivity">Altimeter Main</screenName>
+
+    <screenName name="handyapps.price.gareth.altimeter.ShowUserPreferences">Altimeter Preferences</screenName>
+
     <string name="ga_trackingId">UA-59558776-3</string>
 </resources>

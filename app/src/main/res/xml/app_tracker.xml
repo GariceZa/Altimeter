@@ -10,5 +10,7 @@
 
     <screenName name="handyapps.price.gareth.altimeter.ShowUserPreferences">Altimeter Preferences</screenName>
 
+    <screenName name="com.google.android.gms.ads.AdActivity">Altimeter Ads</screenName>
+
     <string name="ga_trackingId">UA-59558776-3</string>
 </resources>
